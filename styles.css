@@ -1,0 +1,588 @@
+:root {
+    --cor-primaria: #1e3a8a;
+    --cor-secundaria: #166534;
+    --cor-fundo: #1e293b;
+    --cor-texto: #f8fafc;
+    --cor-branco: #ffffff;
+    --cor-erro: #dc2626;
+    --cor-sucesso: #16a34a;
+    --cor-adicao: #059669;
+    --cor-subtracao: #dc2626;
+    --cor-multiplicacao: #d97706;
+    --cor-divisao: #7c3aed;
+    --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --sombra-media: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Elementos de fundo */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.math-symbol {
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.05;
+    color: var(--cor-texto);
+    transform: rotate(var(--rotation));
+}
+
+.math-symbol:nth-child(1) { top: 10%; left: 5%; --rotation: 15deg; }
+.math-symbol:nth-child(2) { top: 30%; right: 10%; --rotation: -20deg; }
+.math-symbol:nth-child(3) { bottom: 20%; left: 15%; --rotation: 10deg; }
+.math-symbol:nth-child(4) { bottom: 30%; right: 15%; --rotation: -15deg; }
+.math-symbol:nth-child(5) { top: 50%; left: 50%; --rotation: 25deg; }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Estilos do Menu Principal e Atividades */
+.tela-menu {
+    background-color: var(--cor-fundo);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    margin: 120px auto 0;
+    max-width: 1200px;
+    width: 90%;
+}
+
+.titulo-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--cor-branco);
+}
+
+.titulo-container h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-container .subtitulo {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.operacao-btn {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    box-shadow: var(--sombra-suave);
+}
+
+.operacao-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+}
+
+/* Cores específicas para cada operação */
+.operacao-btn[data-operacao="adicao"] {
+    background-color: var(--cor-adicao);
+}
+
+.operacao-btn[data-operacao="adicao"]:hover {
+    background-color: #047857;
+}
+
+.operacao-btn[data-operacao="adicao"] .operacao-icon {
+    background-color: #dcfce7;
+    color: var(--cor-adicao);
+}
+
+.operacao-btn[data-operacao="subtracao"] {
+    background-color: var(--cor-subtracao);
+}
+
+.operacao-btn[data-operacao="subtracao"]:hover {
+    background-color: #b91c1c;
+}
+
+.operacao-btn[data-operacao="subtracao"] .operacao-icon {
+    background-color: #fee2e2;
+    color: var(--cor-subtracao);
+}
+
+.operacao-btn[data-operacao="multiplicacao"] {
+    background-color: var(--cor-multiplicacao);
+}
+
+.operacao-btn[data-operacao="multiplicacao"]:hover {
+    background-color: #b45309;
+}
+
+.operacao-btn[data-operacao="multiplicacao"] .operacao-icon {
+    background-color: #fef3c7;
+    color: var(--cor-multiplicacao);
+}
+
+.operacao-btn[data-operacao="divisao"] {
+    background-color: var(--cor-divisao);
+}
+
+.operacao-btn[data-operacao="divisao"]:hover {
+    background-color: #6d28d9;
+}
+
+.operacao-btn[data-operacao="divisao"] .operacao-icon {
+    background-color: #f3e8ff;
+    color: var(--cor-divisao);
+}
+
+.operacao-icon {
+    font-size: 3rem;
+    margin-right: 2rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s;
+}
+
+.operacao-btn:hover .operacao-icon {
+    transform: scale(1.1);
+}
+
+.operacao-info {
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.operacao-btn:hover .operacao-info {
+    transform: translateX(10px);
+}
+
+.operacao-titulo {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-branco);
+    margin-bottom: 0.5rem;
+}
+
+.operacao-desc {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--cor-branco);
+    opacity: 0.8;
+}
+
+/* Placar */
+.placar {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--cor-primaria);
+    border-radius: 15px;
+    box-shadow: var(--sombra-media);
+    width: 250px;
+    padding: 1.2rem;
+    z-index: 1000;
+}
+
+.placar-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.placar-header h3 {
+    color: var(--cor-branco);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.placar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.placar-content > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.placar-content .label {
+    color: var(--cor-branco);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.placar-content .valor {
+    color: var(--cor-branco);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+}
+
+/* Estilos da Área de Exercícios */
+.tela-exercicio {
+    background-color: var(--cor-fundo);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    color: var(--cor-texto);
+    width: min(900px, 95vw);
+    min-height: 500px;
+    margin: 6rem auto 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.cabecalho-exercicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.problema {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--cor-branco);
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 1rem 0 2rem;
+}
+
+.opcoes-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+.opcao-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.opcao-letra {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.opcao-btn {
+    width: 100%;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 15px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.opcao-btn::before {
+    content: attr(data-letra);
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.opcao-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-media);
+    background-color: var(--cor-secundaria);
+}
+
+.opcao-btn.selecionada {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-media);
+    border: 3px solid var(--cor-branco);
+}
+
+.opcao-btn:active {
+    transform: translateY(0);
+}
+
+/* Confirmação */
+.confirmacao {
+    text-align: center;
+    margin: 2rem 0 1rem;
+}
+
+.confirmar-btn {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.confirmar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+.confirmar-btn .icon {
+    font-size: 1.2rem;
+}
+
+.confirmar-btn:disabled {
+    background-color: #64748b;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+}
+
+/* Remove a classe hidden do botão de confirmação */
+.confirmacao.hidden {
+    display: block !important;
+}
+
+.voltar-btn {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.voltar-btn:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-2px);
+}
+
+/* Feedback */
+.feedback-container {
+    margin-top: 0;
+    text-align: center;
+}
+
+.mensagem-feedback {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: var(--cor-branco);
+    margin: 0 auto;
+}
+
+.mensagem-feedback.sucesso {
+    background-color: var(--cor-sucesso);
+    color: var(--cor-branco);
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(22, 163, 74, 0.3);
+}
+
+.mensagem-feedback.erro {
+    background-color: var(--cor-erro);
+    color: var(--cor-branco);
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+}
+
+/* Seletor de Dificuldade */
+.dificuldade-selector {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.dificuldade-selector h2 {
+    color: var(--cor-texto);
+    margin-bottom: 1rem;
+}
+
+.dificuldade-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.dificuldade-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 10px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dificuldade-btn .icon {
+    font-size: 1.2rem;
+}
+
+.dificuldade-btn:hover,
+.dificuldade-btn.active {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tela-menu {
+        padding: 2rem;
+        margin-top: 180px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .titulo-container h1 {
+        font-size: 2.8rem;
+    }
+
+    .titulo-container .subtitulo {
+        font-size: 1.2rem;
+    }
+
+    .placar {
+        position: static;
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    .operacao-btn {
+        padding: 2rem;
+    }
+
+    .operacao-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .operacao-titulo {
+        font-size: 1.5rem;
+    }
+
+    .operacao-desc {
+        font-size: 1rem;
+    }
+
+    .dificuldade-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .opcoes-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tela-exercicio {
+        margin-top: 2rem;
+    }
+
+    .voltar-btn {
+        position: static;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    #operacao-titulo {
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+} 

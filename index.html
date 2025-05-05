@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática Básica Interativa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="math-symbol">+</div>
+        <div class="math-symbol">−</div>
+        <div class="math-symbol">×</div>
+        <div class="math-symbol">÷</div>
+        <div class="math-symbol">=</div>
+    </div>
+
+    <main>
+        <!-- Placar Fixo -->
+        <div class="placar">
+            <div class="placar-header">
+                <h3>Seu Progresso</h3>
+            </div>
+            <div class="placar-content">
+                <div class="pontuacao">
+                    <span class="label">Pontuação:</span>
+                    <span id="pontos" class="valor">0/250</span>
+                </div>
+                <div class="nivel">
+                    <span class="label">Nível:</span>
+                    <span id="nivel" class="valor">1</span>
+                </div>
+                <div class="sequencia">
+                    <span class="label">Sequência:</span>
+                    <span id="sequencia" class="valor">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Principal -->
+        <section id="menu-principal" class="tela-menu">
+            <div class="titulo-container">
+                <h1>Matemática Básica</h1>
+                <p class="subtitulo">Escolha uma operação para começar</p>
+            </div>
+
+            <div class="menu-grid">
+                <button class="operacao-btn" data-operacao="adicao">
+                    <div class="operacao-icon">+</div>
+                    <div class="operacao-info">
+                        <span class="operacao-titulo">Adição</span>
+                        <span class="operacao-desc">Aprenda a somar números</span>
+                    </div>
+                </button>
+                <button class="operacao-btn" data-operacao="subtracao">
+                    <div class="operacao-icon">-</div>
+                    <div class="operacao-info">
+                        <span class="operacao-titulo">Subtração</span>
+                        <span class="operacao-desc">Aprenda a subtrair números</span>
+                    </div>
+                </button>
+                <button class="operacao-btn" data-operacao="multiplicacao">
+                    <div class="operacao-icon">×</div>
+                    <div class="operacao-info">
+                        <span class="operacao-titulo">Multiplicação</span>
+                        <span class="operacao-desc">Aprenda a multiplicar números</span>
+                    </div>
+                </button>
+                <button class="operacao-btn" data-operacao="divisao">
+                    <div class="operacao-icon">÷</div>
+                    <div class="operacao-info">
+                        <span class="operacao-titulo">Divisão</span>
+                        <span class="operacao-desc">Aprenda a dividir números</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção de Exercícios -->
+        <section id="exercicio" class="tela-exercicio hidden">
+            <button id="voltar-menu" class="voltar-btn">
+                <span class="icon">←</span>
+                Voltar ao Menu
+            </button>
+            
+            <h2 id="operacao-titulo">Operação</h2>
+
+            <div id="problema" class="problema">2 + 2 = ?</div>
+
+            <div class="opcoes-container">
+                <div class="opcao-wrapper">
+                    <span class="opcao-letra">A</span>
+                    <button class="opcao-btn" onclick="selecionarOpcao(this)">4</button>
+                </div>
+                <div class="opcao-wrapper">
+                    <span class="opcao-letra">B</span>
+                    <button class="opcao-btn" onclick="selecionarOpcao(this)">5</button>
+                </div>
+                <div class="opcao-wrapper">
+                    <span class="opcao-letra">C</span>
+                    <button class="opcao-btn" onclick="selecionarOpcao(this)">6</button>
+                </div>
+                <div class="opcao-wrapper">
+                    <span class="opcao-letra">D</span>
+                    <button class="opcao-btn" onclick="selecionarOpcao(this)">3</button>
+                </div>
+            </div>
+
+            <div class="confirmacao">
+                <button id="confirmar" class="confirmar-btn" onclick="verificarResposta()">
+                    <span class="icon">✓</span>
+                    Confirmar Resposta
+                </button>
+            </div>
+
+            <div id="mensagem-feedback" class="mensagem-feedback"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
