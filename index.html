@@ -18,7 +18,7 @@
 
     <main>
         <!-- Placar Fixo -->
-        <div class="placar">
+        <div class="placar hidden">
             <div class="placar-header">
                 <h3>Seu Progresso</h3>
             </div>
@@ -151,6 +151,15 @@
                     <span class="dificuldade-desc">Números grandes e operações complexas</span>
                 </div>
             </button>
+        </div>
+    </div>
+
+    <div id="tela-parabens" class="hidden">
+        <canvas id="canvas-fogos"></canvas>
+        <div class="parabens-container">
+            <h1>🎉 Parabéns! 🎉</h1>
+            <p>Você alcançou a pontuação máxima!</p>
+            <button id="btn-voltar-menu-parabens">Voltar ao Menu</button>
         </div>
     </div>
 
