@@ -25,4 +25,4 @@ Um jogo educacional interativo para praticar operações matemáticas básicas.
 
 ## Acesso
 
-Você pode acessar o jogo diretamente pelo link: [em breve] 
+Você pode acessar o jogo diretamente pelo link:(https://pedrosarto.github.io/Seminarios/)
