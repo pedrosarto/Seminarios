@@ -286,6 +286,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 4rem;
 }
 
 .cabecalho-exercicio {
@@ -452,6 +453,13 @@ main {
 
 .tela-exercicio .voltar-btn .icon {
     font-size: 1.2rem;
+}
+
+/* Garante que o botão cobre o texto atrás e tem fundo sólido */
+.tela-exercicio .voltar-btn {
+    background-color: var(--cor-fundo);
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 768px) {
@@ -1138,4 +1146,8 @@ main {
         margin-bottom: 1.5rem;
         justify-content: center;
     }
-} 
+}
+
+#operacao-titulo {
+    margin-top: 3.5rem;
+}
