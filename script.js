@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         estadoJogo.exerciciosCompletados = 0;
         menuDificuldade.classList.add('hidden');
         telaExercicio.classList.remove('hidden');
+        mostrarPlacar(true); // <-- Adicione esta linha
         carregarNovoExercicio();
     }
 
@@ -393,6 +394,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     }
 
+    // Função para mostrar placar
+    function mostrarPlacar(mostrar) {
+        const placar = document.querySelector('.placar');
+        if (mostrar) {
+            placar.classList.remove('hidden');
+        } else {
+            placar.classList.add('hidden');
+        }
+    }
+
+    // Exemplo de uso ao trocar de tela:
+    function mostrarTelaExercicio() {
+        document.getElementById('menu-principal').classList.add('hidden');
+        document.getElementById('menu-dificuldade').classList.add('hidden');
+        document.getElementById('exercicio').classList.remove('hidden');
+        mostrarPlacar(true);
+    }
+
+    function mostrarTelaMenu() {
+        document.getElementById('menu-principal').classList.remove('hidden');
+        document.getElementById('menu-dificuldade').classList.add('hidden');
+        document.getElementById('exercicio').classList.add('hidden');
+        mostrarPlacar(false);
+    }
+
+    function mostrarTelaDificuldade() {
+        document.getElementById('menu-principal').classList.add('hidden');
+        document.getElementById('menu-dificuldade').classList.remove('hidden');
+        document.getElementById('exercicio').classList.add('hidden');
+        mostrarPlacar(false);
+    }
+
     // Inicialização
     atualizarPlacar();
-}); 
+});
